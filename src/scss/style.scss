@@ -1,0 +1,43 @@
+// ===========================================
+// vendor
+// ===========================================
+@import 'vendor/animate.css/animate';
+@import 'vendor/fontawesome/fontawesome';
+
+// ===========================================
+// core
+// ===========================================
+// 変数定義
+@import 'core/variables';
+
+// minireset.css https://jgthms.com/minireset.css/
+@import 'core/reset';
+
+// 全体のベース
+@import 'core/base';
+
+// 汎用スタイル
+@import 'core/utility';
+
+// ===========================================
+// modules
+// ===========================================
+@import 'modules/sample';
+
+// ===========================================
+// layout
+// ===========================================
+@import 'layout/footer';
+@import 'layout/header';
+@import 'layout/main';
+@import 'layout/sidebar';
+
+// ===========================================
+// components
+// ===========================================
+@import 'components/sample';
+
+// ===========================================
+// pages
+// ===========================================
+@import 'pages/sample';

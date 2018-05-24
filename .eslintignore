@@ -1,0 +1,5 @@
+/dest
+/src/js/vendor
+gulpfile.js
+webpack.config.js
+node_modules/

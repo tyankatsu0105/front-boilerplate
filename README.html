@@ -1,0 +1,349 @@
+<!DOCTYPE html>
+    <html>
+    <head>
+        <meta http-equiv="Content-type" content="text/html;charset=UTF-8">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.9.0/katex.min.css" integrity="sha384-TEMocfGvRuD1rIAacqrknm5BQZ7W7uWitoih+jMNFXQIbNl16bO8OZmylH/Vi/Ei" crossorigin="anonymous">
+        <style>
+/*--------------------------------------------------------------------------------------------- * Copyright (c) Microsoft Corporation. All rights reserved. * Licensed under the MIT License. See License.txt in the project root for license information. *--------------------------------------------------------------------------------------------*/ body { font-family: "Segoe WPC", "Segoe UI", "SFUIText-Light", "HelveticaNeue-Light", sans-serif, "Droid Sans Fallback"; font-size: 14px; padding: 0 12px; line-height: 22px; word-wrap: break-word; } body.scrollBeyondLastLine { margin-bottom: calc(100vh - 22px); } body.showEditorSelection .code-line { position: relative; } body.showEditorSelection .code-active-line:before, body.showEditorSelection .code-line:hover:before { content: ""; display: block; position: absolute; top: 0; left: -12px; height: 100%; } body.showEditorSelection li.code-active-line:before, body.showEditorSelection li.code-line:hover:before { left: -30px; } .vscode-light.showEditorSelection .code-active-line:before { border-left: 3px solid rgba(0, 0, 0, 0.15); } .vscode-light.showEditorSelection .code-line:hover:before { border-left: 3px solid rgba(0, 0, 0, 0.40); } .vscode-dark.showEditorSelection .code-active-line:before { border-left: 3px solid rgba(255, 255, 255, 0.4); } .vscode-dark.showEditorSelection .code-line:hover:before { border-left: 3px solid rgba(255, 255, 255, 0.60); } .vscode-high-contrast.showEditorSelection .code-active-line:before { border-left: 3px solid rgba(255, 160, 0, 0.7); } .vscode-high-contrast.showEditorSelection .code-line:hover:before { border-left: 3px solid rgba(255, 160, 0, 1); } img { max-width: 100%; max-height: 100%; } a { color: #4080D0; text-decoration: none; } a:focus, input:focus, select:focus, textarea:focus { outline: 1px solid -webkit-focus-ring-color; outline-offset: -1px; } hr { border: 0; height: 2px; border-bottom: 2px solid; } h1 { padding-bottom: 0.3em; line-height: 1.2; border-bottom-width: 1px; border-bottom-style: solid; } h1, h2, h3 { font-weight: normal; } h1 code, h2 code, h3 code, h4 code, h5 code, h6 code { font-size: inherit; line-height: auto; } a:hover { color: #4080D0; text-decoration: underline; } table { border-collapse: collapse; } table > thead > tr > th { text-align: left; border-bottom: 1px solid; } table > thead > tr > th, table > thead > tr > td, table > tbody > tr > th, table > tbody > tr > td { padding: 5px 10px; } table > tbody > tr + tr > td { border-top: 1px solid; } blockquote { margin: 0 7px 0 5px; padding: 0 16px 0 10px; border-left: 5px solid; } code { font-family: Menlo, Monaco, Consolas, "Droid Sans Mono", "Courier New", monospace, "Droid Sans Fallback"; font-size: 14px; line-height: 19px; } body.wordWrap pre { white-space: pre-wrap; } .mac code { font-size: 12px; line-height: 18px; } code > div { padding: 16px; border-radius: 3px; overflow: auto; } /** Theming */ .vscode-light { color: rgb(30, 30, 30); } .vscode-dark { color: #DDD; } .vscode-high-contrast { color: white; } .vscode-light code { color: #A31515; } .vscode-dark code { color: #D7BA7D; } .vscode-light code > div { background-color: rgba(220, 220, 220, 0.4); } .vscode-dark code > div { background-color: rgba(10, 10, 10, 0.4); } .vscode-high-contrast code > div { background-color: rgb(0, 0, 0); } .vscode-high-contrast h1 { border-color: rgb(0, 0, 0); } .vscode-light table > thead > tr > th { border-color: rgba(0, 0, 0, 0.69); } .vscode-dark table > thead > tr > th { border-color: rgba(255, 255, 255, 0.69); } .vscode-light h1, .vscode-light hr, .vscode-light table > tbody > tr + tr > td { border-color: rgba(0, 0, 0, 0.18); } .vscode-dark h1, .vscode-dark hr, .vscode-dark table > tbody > tr + tr > td { border-color: rgba(255, 255, 255, 0.18); } .vscode-light blockquote, .vscode-dark blockquote { background: rgba(127, 127, 127, 0.1); border-color: rgba(0, 122, 204, 0.5); } .vscode-high-contrast blockquote { background: transparent; border-color: #fff; }
+</style>
+<style>
+/* Tomorrow Theme */ /* http://jmblog.github.com/color-themes-for-google-code-highlightjs */ /* Original theme - https://github.com/chriskempson/tomorrow-theme */ /* Tomorrow Comment */ .hljs-comment, .hljs-quote { color: #8e908c; } /* Tomorrow Red */ .hljs-variable, .hljs-template-variable, .hljs-tag, .hljs-name, .hljs-selector-id, .hljs-selector-class, .hljs-regexp, .hljs-deletion { color: #c82829; } /* Tomorrow Orange */ .hljs-number, .hljs-built_in, .hljs-builtin-name, .hljs-literal, .hljs-type, .hljs-params, .hljs-meta, .hljs-link { color: #f5871f; } /* Tomorrow Yellow */ .hljs-attribute { color: #eab700; } /* Tomorrow Green */ .hljs-string, .hljs-symbol, .hljs-bullet, .hljs-addition { color: #718c00; } /* Tomorrow Blue */ .hljs-title, .hljs-section { color: #4271ae; } /* Tomorrow Purple */ .hljs-keyword, .hljs-selector-tag { color: #8959a8; } .hljs { display: block; overflow-x: auto; color: #4d4d4c; padding: 0.5em; } .hljs-emphasis { font-style: italic; } .hljs-strong { font-weight: bold; }
+</style>
+<style>
+ul.contains-task-list { padding-left: 0; } ul ul.contains-task-list { padding-left: 40px; } .task-list-item { list-style-type: none; } .task-list-item-checkbox { vertical-align: middle; }
+</style>
+        <style>
+            body {
+                font-family: -apple-system, BlinkMacSystemFont, 'Segoe WPC', 'Segoe UI', 'HelveticaNeue-Light', 'Ubuntu', 'Droid Sans', sans-serif;
+                font-size: 14px;
+                line-height: 1.6;
+            }
+        </style>
+    </head>
+    <body>
+        <p><font color="DeepPink">定期的にメンテナンスすること。</font></p>
+<p><img src="https://avatars0.githubusercontent.com/u/28397593?s%3D460%26amp%3Bv%3D4" alt="tyankatsu"></p>
+<p>hogehogeはfugafugaが開発したfooobar。
+主にhogehogeを目的とする</p>
+<h1 id="contents">Contents</h1>
+<ul>
+<li><a href="#contents">Contents</a></li>
+<li><a href="#production-environment">Production environment</a></li>
+<li><a href="#development-environment">Development environment</a></li>
+<li><a href="#local-development-environment">Local development environment</a>
+<ul>
+<li><a href="#install">install</a></li>
+<li><a href="#command">command</a>
+<ul>
+<li><a href="#develop">develop</a></li>
+<li><a href="#product">product</a></li>
+</ul>
+</li>
+<li><a href="#role-of-application">role of application</a>
+<ul>
+<li><a href="#docker-compose">docker compose</a></li>
+<li><a href="#gulp-v4">gulp v4</a></li>
+<li><a href="#webpack-v4">webpack v4</a></li>
+<li><a href="#prettier">prettier</a></li>
+<li><a href="#stylelint">stylelint</a></li>
+<li><a href="#eslint">eslint</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="#rule">Rule</a>
+<ul>
+<li><a href="#git">Git</a>
+<ul>
+<li><a href="#commit-message">commit message</a>
+<ul>
+<li><a href="#prefix">prefix</a></li>
+<li><a href="#scope">scope</a></li>
+<li><a href="#emoji-prefix">emoji prefix</a></li>
+<li><a href="#seven-rules">seven rules</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="#html-php">html,php</a></li>
+<li><a href="#php">php</a></li>
+<li><a href="#sassscss">sass(scss)</a>
+<ul>
+<li><a href="#core">core</a></li>
+<li><a href="#components">components</a></li>
+<li><a href="#layout">layout</a></li>
+<li><a href="#modules">modules</a></li>
+<li><a href="#pages">pages</a></li>
+<li><a href="#vendor">vendor</a></li>
+</ul>
+</li>
+<li><a href="#js">js</a>
+<ul>
+<li><a href="#modules">modules</a></li>
+<li><a href="#vendor">vendor</a></li>
+</ul>
+</li>
+<li><a href="#img">img</a>
+<ul>
+<li><a href="#common">common</a></li>
+<li><a href="#favicon">favicon</a></li>
+<li><a href="#home">home</a></li>
+<li><a href="#icon">icon</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h1 id="production-environment">Production environment</h1>
+<p><sub><sup><a href="#contents">back to contents</a></sup></sub></p>
+<p><a href="http://example.com/">http://example.com/</a></p>
+<ul>
+<li>wordpress4.5.0</li>
+<li>php7.2</li>
+<li>html5.2</li>
+</ul>
+<h1 id="development-environment">Development environment</h1>
+<p><sub><sup><a href="#contents">back to contents</a></sup></sub></p>
+<p><a href="http://example.com/">http://example.com/</a></p>
+<ul>
+<li>wordpress4.5.0</li>
+<li>php5.6</li>
+<li>html5.2</li>
+</ul>
+<h1 id="local-development-environment">Local development environment</h1>
+<p><sub><sup><a href="#contents">back to contents</a></sup></sub></p>
+<ul>
+<li>docker compose</li>
+<li>wordpress4.5.0</li>
+<li>mysql5.6</li>
+<li>phpmyadmin4.7</li>
+<li>node v8.9.0</li>
+<li>yarn or npm</li>
+<li>gulp v4</li>
+<li>webpack v4</li>
+<li>stylelint</li>
+<li>eslint</li>
+<li>prettier</li>
+</ul>
+<h2 id="install">install</h2>
+<p><sub><sup><a href="#contents">back to contents</a></sup></sub></p>
+<p>package.jsonに記述しているパッケージをインストールします</p>
+<pre><code>yarn
+npm install
+</code></pre>
+<h2 id="command">command</h2>
+<p><sub><sup><a href="#contents">back to contents</a></sup></sub></p>
+<h3 id="develop">develop</h3>
+<pre><code>yarn dev
+npm run dev
+</code></pre>
+<p>開発中はこのコマンドを使用する</p>
+<h3 id="product">product</h3>
+<p><sub><sup><a href="#contents">back to contents</a></sup></sub></p>
+<pre><code>yarn product
+npm run product
+</code></pre>
+<p>リリースの際はこのコマンドを使用する</p>
+<h2 id="role-of-application">role of application</h2>
+<p><sub><sup><a href="#contents">back to contents</a></sup></sub></p>
+<h3 id="docker-compose">docker compose</h3>
+<p><sub><sup><a href="#contents">back to contents</a></sup></sub></p>
+<p>開発環境を構築するために使用します。<br>
+wordpress,mysql,phpmyadminなど、好きな環境を構築して下さい</p>
+<ul>
+<li>docker-compose.yml</li>
+<li>.env</li>
+<li>Dockerfile</li>
+</ul>
+<h3 id="gulp-v4">gulp v4</h3>
+<p><sub><sup><a href="#contents">back to contents</a></sup></sub></p>
+<p>タスクランナーです。
+<code>gulpfile.js</code>の記述を元に動きます。<br>
+設定パスを変更する時は<code>config.json</code>を編集して下さい。</p>
+<h3 id="webpack-v4">webpack v4</h3>
+<p><sub><sup><a href="#contents">back to contents</a></sup></sub></p>
+<p>バンドラーです。
+<code>webpack.config.js</code>の記述を元に動きます。<br>
+設定パスを変更する時は<code>config.json</code>を編集して下さい。</p>
+<h3 id="prettier">prettier</h3>
+<p>コードの整形に使用します。</p>
+<h3 id="stylelint">stylelint</h3>
+<p><sub><sup><a href="#contents">back to contents</a></sup></sub></p>
+<p>css, sass(scss)のlinterです。<br>
+設定は<code>.stylelintrc.json</code>に記述します。<br>
+除外ファイルの記述は<code>.stylelintignore</code>に記述します。<br>
+設定パスを変更する時は<code>config.json</code>を編集して下さい。</p>
+<p><font color="DeepPink">gulp内で使用しています。<br>
+fix機能を使用します。<br>
+prettierと組み合わせるために、stylelint =&gt; prettierの順番で処理させます。<br>
+prettierのルールは<code>gulpfile.js</code>に記述します。</font></p>
+<p><font color="DeepPink">エディタに拡張機能が存在している場合は併用をおすすめします</font></p>
+<h3 id="eslint">eslint</h3>
+<p><sub><sup><a href="#contents">back to contents</a></sup></sub></p>
+<p>jsのlinterです。<br>
+設定は<code>.eslintrc.json</code>に記述します。<br>
+除外ファイルの記述は<code>.eslintignore</code>に記述します。<br>
+設定パスを変更する時は<code>config.json</code>を編集して下さい。</p>
+<p><font color="DeepPink">gulp内で使用しています。<br>
+fix機能を使用します。<br>
+eslintとprettierを<code>eslint-config-prettier</code>と<code>eslint-plugin-prettier</code>で実現しています。prettierのルールは<code>.eslintrc.json</code>に記述します。</font></p>
+<p><font color="DeepPink">エディタに拡張機能が存在している場合は併用をおすすめします</font></p>
+<h1 id="rule">Rule</h1>
+<p><sub><sup><a href="#contents">back to contents</a></sup></sub></p>
+<h2 id="git">Git</h2>
+<p><sub><sup><a href="#contents">back to contents</a></sup></sub></p>
+<h3 id="commit-message">commit message</h3>
+<p><sub><sup><a href="#contents">back to contents</a></sup></sub></p>
+<p>これを参考にコミットコメントを記述する。
+<a href="https://postd.cc/how-to-write-a-git-commit-message/">Git のコミットメッセージの書き方 | POSTD</a></p>
+<p>以下例</p>
+<pre><code>feat(eslint): :tada: eslintを設定
+
+TEAM_PR-19
+</code></pre>
+<h4 id="prefix">prefix</h4>
+<p><sub><sup><a href="#contents">back to contents</a></sup></sub></p>
+<p>以下のものから必ず使用する。増やすことはできない。</p>
+<ul>
+<li>fix: バグやタイポなどの修正</li>
+<li>feat: 新しい機能の追加</li>
+<li>refactor: リファクタリング</li>
+<li>style: スタイリングに関わる変更(css/sass)</li>
+<li>chore: 細務(ファイル整備、移動、削除、名前変更など)</li>
+<li>test: テストファイルに対する変更や修正</li>
+<li>docs: ドキュメントの加筆や修正</li>
+<li>breaking: 破壊的変更</li>
+<li>build: ビルド周りの設定(主に gulp や webpack 周り)</li>
+<li>ci: CI に関わる設定</li>
+<li>pref: パフォーマンスの改善</li>
+<li>revert: 削除や変更の取り消し</li>
+<li>other: その他</li>
+</ul>
+<h4 id="scope">scope</h4>
+<p><sub><sup><a href="#contents">back to contents</a></sup></sub></p>
+<p>変更したもののカテゴリを記入する。ルールは各自設定していいが、一貫性があったほうが良いので。以下のものに良いものがなければ追加する。尚追加する際には gitmesage.txt に追記すること（他の作業者にも共有可能にするため）</p>
+<h4 id="emoji-prefix">emoji prefix</h4>
+<p><sub><sup><a href="#contents">back to contents</a></sup></sub></p>
+<p>prefix に書いたものとは別に、さらなる意味付けのために付ける。
+emoji が不足した場合は自分で追加する。尚追加する際には gitmesage.txt に追記すること（他の作業者にも共有可能にするため）</p>
+<h4 id="seven-rules">seven rules</h4>
+<p><sub><sup><a href="#contents">back to contents</a></sup></sub></p>
+<ol>
+<li>タイトルの後は 1 行空けて本文を書く</li>
+<li>タイトルを 50 字以内におさめる</li>
+<li>タイトルの文頭を大文字にする</li>
+<li>タイトルの文末にピリオドを付けない</li>
+<li>タイトルは命令形で記述する</li>
+<li>本文は 1 行あたり 72 字以内におさめる</li>
+<li>本文ではどのようにではなく何をとなぜを説明する</li>
+</ol>
+<p>詳細は <a href="https://postd.cc/how-to-write-a-git-commit-message/">https://postd.cc/how-to-write-a-git-commit-message/</a></p>
+<p>3,4,5 は、コミットメッセージは基本日本語なので無視して良い。</p>
+<h2 id="html-php">html,php</h2>
+<ul>
+<li>クラス名には BEM を用いる</li>
+<li>クラス名及び id 名にはローワーキャメルケース、アッパーキャメルケースは用いない。単語をつなげる際には「-」で繋げる</li>
+</ul>
+<p>詳細は<a href="http://getbem.com/naming/">BEM — Block Element Modifier</a></p>
+<pre class="hljs"><code><div><span class="hljs-comment">&lt;!-- NG --&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">nav</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"globalNav"</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-name">ul</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"globalNavList"</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">li</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"globalNavListItem"</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">li</span>&gt;</span>
+  <span class="hljs-tag">&lt;/<span class="hljs-name">ul</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-name">nav</span>&gt;</span>
+
+<span class="hljs-comment">&lt;!-- OK --&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">nav</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"global-nav"</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-name">ul</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"global-nav-list"</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">li</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"global-nav-list__item"</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">li</span>&gt;</span>
+  <span class="hljs-tag">&lt;/<span class="hljs-name">ul</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-name">nav</span>&gt;</span>
+</div></code></pre>
+<h2 id="php">php</h2>
+<p>Doc を必ず書く</p>
+<h2 id="sassscss">sass(scss)</h2>
+<p><sub><sup><a href="#contents">back to contents</a></sup></sub></p>
+<pre><code>cd src/scss/
+tree -L 1 -I '.DS_Store|*.scss' -a | pbcopy
+</code></pre>
+<pre><code>.
+├── components
+├── core
+├── layout
+├── modules
+├── pages
+└── vendor
+
+6 directories, 0 files
+</code></pre>
+<h3 id="core">core</h3>
+<p><sub><sup><a href="#contents">back to contents</a></sup></sub></p>
+<p>スタイルの核となるスタイルのため、扱う際には注意が必要</p>
+<h3 id="components">components</h3>
+<p><sub><sup><a href="#contents">back to contents</a></sup></sub></p>
+<ul>
+<li>サイト内で１つの機能になりうるものは、ここにファイルを作製する</li>
+<li>ファイル名は必ず BEM の Block 名にする</li>
+</ul>
+<h3 id="layout">layout</h3>
+<p><sub><sup><a href="#contents">back to contents</a></sup></sub></p>
+<p>全体的なレイアウトスタイル定義</p>
+<h3 id="modules">modules</h3>
+<p><sub><sup><a href="#contents">back to contents</a></sup></sub></p>
+<p>「rule of three」に則り、原則３回以上繰り返し用いられるものに関してはここにファイルを作製する</p>
+<h3 id="pages">pages</h3>
+<p><sub><sup><a href="#contents">back to contents</a></sup></sub></p>
+<p>ページ種別でスタイルを定義したい際には、ページ種名をファイル名にした上でスタイルを定義する</p>
+<h3 id="vendor">vendor</h3>
+<p><sub><sup><a href="#contents">back to contents</a></sup></sub></p>
+<p>プラグイン、フレームワークを用いる際に必要になるスタイルはここに格納する</p>
+<h2 id="js">js</h2>
+<p><sub><sup><a href="#contents">back to contents</a></sup></sub></p>
+<ul>
+<li>原則ページ種別毎にファイルを分ける</li>
+<li>Doc を必ず書く</li>
+<li>命名規則はローワーキャメルケースを採用する</li>
+</ul>
+<p>エントリーポイントページ種別ごとにエントリーポイントを分け、webpack.config.js に適宜追記し、バンドルする。</p>
+<h3 id="modules">modules</h3>
+<p><sub><sup><a href="#contents">back to contents</a></sup></sub></p>
+<p>機能を大別したファイルに分ける</p>
+<h3 id="vendor">vendor</h3>
+<p><sub><sup><a href="#contents">back to contents</a></sup></sub></p>
+<p>プラグイン、フレームワークを用いる際に必要になるファイルはここに格納する</p>
+<h2 id="img">img</h2>
+<ul>
+<li>必ずgulpで圧縮して使用する</li>
+<li>画像名は「_」で単語を繋ぎ、「-」で異なる単語を繋げる。詳細は<a href="http://clockmaker.jp/blog/2009/06/file-rename/">アンダースコアとハイフンで効率よいファイル・フォルダ命名方法 | ClockMaker Blog</a>以下例</li>
+</ul>
+<pre><code>NG
+icon-e-mail-1.svg
+
+OK
+icon-e_mail-1.svg
+</code></pre>
+<pre><code>cd src/img/
+tree -L 1 -I '.DS_Store' -a | pbcopy
+</code></pre>
+<pre><code>.
+├── common
+├── favicon
+├── home
+└── icon
+
+4 directories, 0 files
+
+</code></pre>
+<h3 id="common">common</h3>
+<p>共通に使用する画像（logoなど）</p>
+<h3 id="favicon">favicon</h3>
+<p>favicon一式を格納する
+faviconは以下のサイトで生成する<br>
+<a href="https://ao-system.net/favicongenerator/">様々なファビコンを一括生成。favicon generator</a></p>
+<h3 id="home">home</h3>
+<p>トップページに使用する画像を格納する。これに倣い、ディレクトリ単位でフォルダを生成して画像を格納していく</p>
+<h3 id="icon">icon</h3>
+<p>サイトに使用するアイコン画像を格納する。</p>
+
+    </body>
+    </html>
