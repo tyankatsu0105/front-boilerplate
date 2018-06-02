@@ -15,9 +15,12 @@ const progeny = require('gulp-progeny');
 const connectPhp = require('gulp-connect-php');
 
 // sass
-const sourcemaps = require('gulp-sourcemaps');
 const sass = require('gulp-sass');
-const autoprefixer = require('gulp-autoprefixer');
+const sourcemaps = require('gulp-sourcemaps');
+
+// postcss
+const postcss = require("gulp-postcss");
+const autoprefixer = require("autoprefixer");
 
 // img min
 const imagemin = require('gulp-imagemin');
@@ -37,10 +40,12 @@ const prettierPlugin = require('gulp-prettier-plugin');
 // // stylelint
 // // --------------------------------------------
 gulp.task('stylelint', () => {
-	return gulp.src(config.scss, { since: gulp.lastRun('stylelint') })
-	.pipe(plumber({
-		// errorHandler: notify.onError('Error: <%= error.message %>')
-	}))
+	return gulp.src(config.scss, {
+			since: gulp.lastRun('stylelint')
+		})
+		.pipe(plumber({
+			// errorHandler: notify.onError('Error: <%= error.message %>')
+		}))
 		.pipe(stylelint({
 			fix: true
 		}))
@@ -52,7 +57,9 @@ gulp.task('stylelint', () => {
 // // prettier scss
 // // --------------------------------------------
 gulp.task("prettier:scss", () => {
-	return gulp.src(config.prettier.scss, { since: gulp.lastRun('prettier:scss') })
+	return gulp.src(config.prettier.scss, {
+			since: gulp.lastRun('prettier:scss')
+		})
 		.pipe(prettierPlugin({
 			// 1行に記述できる文字量　超えると改行する　但し、改行するとエラーになる場合は改行しない
 			printWidth: 80,
@@ -72,38 +79,41 @@ gulp.task("prettier:scss", () => {
 // eslint
 // --------------------------------------------
 gulp.task('eslint', () => {
-  return gulp.src(`${config.js}/**/*.js`, { since: gulp.lastRun('eslint') })
-  .pipe(eslint({
-		fix: true
-	}))
-	.pipe(gulp.dest(file => file.base));
+	return gulp.src(`${config.js}/**/*.js`, {
+			since: gulp.lastRun('eslint')
+		})
+		.pipe(eslint({
+			fix: true
+		}))
+		.pipe(gulp.dest(file => file.base));
 });
 
 // --------------------------------------------
-// Sass
+// sass
 // --------------------------------------------
 gulp.task('sass', () => {
 	return gulp.src(config.scss)
-	.pipe(cache('sass'))
-  .pipe(progeny())
-	.pipe(plumber({
-		errorHandler: notify.onError('Error: <%= error.message %>')
-	}))
+		.pipe(cache('sass'))
+		.pipe(progeny())
+		.pipe(plumber({
+			errorHandler: notify.onError('Error: <%= error.message %>')
+		}))
 		.pipe(sourcemaps.init({
 			largeFile: true
 		}))
 		.pipe(sass({
 			outputStyle: 'compressed'
 		}))
-		.pipe(autoprefixer({
-			browsers: ["last 2 versions", "ie >= 9", "Android >= 4", "ios_saf >= 8"],
-			cascade: false
-		}))
+		.pipe(postcss([
+			autoprefixer({
+				browsers: ["last 2 versions", "ie >= 11", "Android >= 4", "ios_saf >= 8"],
+				cascade: false,
+				grid: true
+			})
+		]))
 		.pipe(sourcemaps.write('./scss-sourcemaps'))
 		.pipe(gulp.dest(config.cssDest))
 });
-
-
 
 // --------------------------------------------
 // browser-sync
@@ -149,19 +159,19 @@ gulp.task('img-min', () => {
 	return gulp.src(config.img)
 		.pipe(changed(config.imgDest))
 		.pipe(imagemin([
-      pngquant({
-        quality: '65-80',  // 画質
-        speed: 1,  // 最低のスピード
-        floyd: 0,  // ディザリングなし
-      }),
-      mozjpeg({
-        quality: 85, // 画質
-        progressive: true
-      }),
-      imagemin.svgo(),
-      imagemin.optipng(),
-      imagemin.gifsicle()
-    ])).pipe(gulp.dest(config.imgDest))
+			pngquant({
+				quality: '65-80', // 画質
+				speed: 1, // 最低のスピード
+				floyd: 0, // ディザリングなし
+			}),
+			mozjpeg({
+				quality: 85, // 画質
+				progressive: true
+			}),
+			imagemin.svgo(),
+			imagemin.optipng(),
+			imagemin.gifsicle()
+		])).pipe(gulp.dest(config.imgDest))
 });
 
 
@@ -170,7 +180,7 @@ gulp.task('img-min', () => {
 // --------------------------------------------
 gulp.task('watch', (done) => {
 	gulp.watch([config.watch, `${config.cssDest}*.css`, `${config.jsDest}*.js`]).on('change', browserSync.reload);
-	gulp.watch(config.scss, gulp.series('stylelint','prettier:scss', 'sass'));
+	gulp.watch(config.scss, gulp.series('stylelint', 'prettier:scss', 'sass'));
 	gulp.watch(`${config.js}/**/*.js`, gulp.series('eslint'));
 	gulp.watch(config.img, gulp.series('img-min'));
 	done();

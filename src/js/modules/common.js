@@ -5,7 +5,7 @@ export default class {
    */
   setUp() {
     this.sampleMethod();
-    this.sampleMethod2('anysense', '元気');
+    this.sampleMethod2('tyankatsu', '元気');
     this.isTabFocus();
   }
   /**
