@@ -7,18 +7,18 @@
 }
 
 body {
-  background-color: #fff;
-  color: $color-base;
   font-family: $font-family-base;
   line-height: $line-height-base;
+  color: $color-base;
+  background-color: #fff;
   -webkit-text-size-adjust: 100%; //stylelint-disable-line property-no-vendor-prefix
   -moz-text-size-adjust: 100%; //stylelint-disable-line property-no-vendor-prefix
   -ms-text-size-adjust: 100%; //stylelint-disable-line property-no-vendor-prefix
 }
 
 a {
-  color: inherit;
   display: block;
+  color: inherit;
   text-decoration: none;
   transition: $tst-default;
 }
