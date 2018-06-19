@@ -89,11 +89,11 @@ gulp.task('eslint', () => {
 });
 
 // --------------------------------------------
-// sass
+// sass:dev
 // --------------------------------------------
-gulp.task('sass', () => {
+gulp.task('sass:dev', () => {
 	return gulp.src(config.src.scss)
-		.pipe(cache('sass'))
+		.pipe(cache('sass:dev'))
 		.pipe(progeny())
 		.pipe(plumber({
 			errorHandler: notify.onError('Error: <%= error.message %>')
@@ -101,6 +101,25 @@ gulp.task('sass', () => {
 		.pipe(sourcemaps.init({
 			largeFile: true
 		}))
+		.pipe(sass({
+			outputStyle: 'expanded'
+		}))
+		.pipe(postcss([
+			autoprefixer({
+				browsers: ["last 2 versions", "ie >= 11", "Android >= 4", "ios_saf >= 8"],
+				cascade: false,
+				grid: true
+			})
+		]))
+		.pipe(sourcemaps.write('./scss-sourcemaps'))
+		.pipe(gulp.dest(config.dest.scss))
+});
+
+// --------------------------------------------
+// sass:product
+// --------------------------------------------
+gulp.task('sass:product', () => {
+	return gulp.src(config.src.scss)
 		.pipe(sass({
 			outputStyle: 'compressed'
 		}))
@@ -111,7 +130,6 @@ gulp.task('sass', () => {
 				grid: true
 			})
 		]))
-		.pipe(sourcemaps.write('./scss-sourcemaps'))
 		.pipe(gulp.dest(config.dest.scss))
 });
 
@@ -180,7 +198,7 @@ gulp.task('img-min', () => {
 // --------------------------------------------
 gulp.task('watch', (done) => {
 	gulp.watch([config.watch, `${config.dest.scss}*.css`, `${config.dest.js}*.js`]).on('change', browserSync.reload);
-	gulp.watch(config.src.scss, gulp.series('stylelint', 'prettier:scss', 'sass'));
+	gulp.watch(config.src.scss, gulp.series('stylelint', 'prettier:scss', 'sass:dev'));
 	gulp.watch(`${config.src.js}/**/*.js`, gulp.series('eslint'));
 	gulp.watch(config.src.img, gulp.series('img-min'));
 	done();
@@ -199,7 +217,7 @@ gulp.task('product',
 	gulp.series(
 		'stylelint',
 		'prettier:scss',
-		'sass',
+		'sass:product',
 		'eslint',
 		'img-min'
 	)
