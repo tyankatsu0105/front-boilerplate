@@ -55,6 +55,7 @@ ul.contains-task-list { padding-left: 0; } ul ul.contains-task-list { padding-le
 <ul>
 <li><a href="#git">Git</a>
 <ul>
+<li><a href="#setting-git-config">setting git config</a></li>
 <li><a href="#commit-message">commit message</a>
 <ul>
 <li><a href="#prefix">prefix</a></li>
@@ -65,7 +66,7 @@ ul.contains-task-list { padding-left: 0; } ul ul.contains-task-list { padding-le
 </li>
 </ul>
 </li>
-<li><a href="#html-php">html,php</a></li>
+<li><a href="#htmlphp">html,php</a></li>
 <li><a href="#php">php</a></li>
 <li><a href="#sassscss">sass(scss)</a>
 <ul>
@@ -192,6 +193,11 @@ eslintとprettierを<code>eslint-config-prettier</code>と<code>eslint-plugin-pr
 <p><sub><sup><a href="#contents">back to contents</a></sup></sub></p>
 <h2 id="git">Git</h2>
 <p><sub><sup><a href="#contents">back to contents</a></sup></sub></p>
+<h3 id="setting-git-config">setting git config</h3>
+<p><sub><sup><a href="#contents">back to contents</a></sup></sub></p>
+<p>gitmessage.txtをcommit時に表示するために以下のコマンドを<code>gitmessage.txt</code>と同階層で実行する</p>
+<pre><code>git config --local commit.template ./gitmessage.txt
+</code></pre>
 <h3 id="commit-message">commit message</h3>
 <p><sub><sup><a href="#contents">back to contents</a></sup></sub></p>
 <p>これを参考にコミットコメントを記述する。
@@ -239,7 +245,7 @@ emoji が不足した場合は自分で追加する。尚追加する際には g
 </ol>
 <p>詳細は <a href="https://postd.cc/how-to-write-a-git-commit-message/">https://postd.cc/how-to-write-a-git-commit-message/</a></p>
 <p>3,4,5 は、コミットメッセージは基本日本語なので無視して良い。</p>
-<h2 id="html-php">html,php</h2>
+<h2 id="htmlphp">html,php</h2>
 <ul>
 <li>クラス名には BEM を用いる</li>
 <li>クラス名及び id 名にはローワーキャメルケース、アッパーキャメルケースは用いない。単語をつなげる際には「-」で繋げる</li>

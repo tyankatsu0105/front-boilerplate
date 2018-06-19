@@ -1,39 +1,31 @@
 
 {
-	"///" : [
-		"port => browsersyncのポート設定　php環境を立ち上げるport番号を指定 php環境にしない場合は空にする 空の場合はhtml環境になる",
-		"connectPhp => gulp-connect-php起動させる true or false",
-		"watch => gulp watch対象ファイル",
-		"scss => gulp-sassの対象ファイル",
-		"prettier => prettierの対象ファイル",
-		"cssDest => sassのコンパイル先ディレクトリ",
-		"js => webpackの対象ディレクトリ",
-		"jsDest => webpackによるバンドル先ディレクトリ",
-		"img => gulp-imageminの対象ファイル",
-		"imgDest => gulp-imageminによる圧縮先ディレクトリ"
-	],
 	"port": "",
 	"connectPhp": false,
 	"watch": [
 		"./**/*.html",
 		"./**/*.php"
 	],
-	"scss": "src/scss/**/*.scss",
+	"src": {
+		"scss": "src/scss/**/*.scss",
+		"js": "src/js",
+		"img": [
+			"src/img/**/*.jpg",
+			"src/img/**/*.png",
+			"src/img/**/*.gif",
+			"src/img/**/*.svg"
+		]
+	},
+	"dest": {
+		"scss": "dest/css/",
+		"js": "dest/js/",
+		"img": "dest/img/"
+	},
 	"prettier": {
 		"scss": [
 			"src/scss/**/*.scss",
 			"!src/scss/vendor/**",
 			"!dest/**/*.css"
 		]
-	},
-	"cssDest": "dest/css/",
-	"js": "src/js",
-	"jsDest": "dest/js/",
-	"img": [
-		"src/img/**/*.jpg",
-		"src/img/**/*.png",
-		"src/img/**/*.gif",
-		"src/img/**/*.svg"
-	],
-	"imgDest": "dest/img/"
+	}
 }

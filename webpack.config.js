@@ -14,7 +14,7 @@ const ENTRY_FILE_NAME = [
 const entries = {};
 ENTRY_FILE_NAME.forEach(file => entries[file] = [
   'babel-polyfill',
-  `./${config.js}/${file}.js`
+  `./${config.src.js}/${file}.js`
 ]);
 
 // babel設定

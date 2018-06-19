@@ -40,7 +40,7 @@ const prettierPlugin = require('gulp-prettier-plugin');
 // // stylelint
 // // --------------------------------------------
 gulp.task('stylelint', () => {
-	return gulp.src(config.scss, {
+	return gulp.src(config.src.scss, {
 			since: gulp.lastRun('stylelint')
 		})
 		.pipe(plumber({
@@ -79,7 +79,7 @@ gulp.task("prettier:scss", () => {
 // eslint
 // --------------------------------------------
 gulp.task('eslint', () => {
-	return gulp.src(`${config.js}/**/*.js`, {
+	return gulp.src(`${config.src.js}/**/*.js`, {
 			since: gulp.lastRun('eslint')
 		})
 		.pipe(eslint({
@@ -92,7 +92,7 @@ gulp.task('eslint', () => {
 // sass
 // --------------------------------------------
 gulp.task('sass', () => {
-	return gulp.src(config.scss)
+	return gulp.src(config.src.scss)
 		.pipe(cache('sass'))
 		.pipe(progeny())
 		.pipe(plumber({
@@ -112,7 +112,7 @@ gulp.task('sass', () => {
 			})
 		]))
 		.pipe(sourcemaps.write('./scss-sourcemaps'))
-		.pipe(gulp.dest(config.cssDest))
+		.pipe(gulp.dest(config.dest.scss))
 });
 
 // --------------------------------------------
@@ -156,8 +156,8 @@ gulp.task('browser-sync', () => {
 // img min
 // --------------------------------------------
 gulp.task('img-min', () => {
-	return gulp.src(config.img)
-		.pipe(changed(config.imgDest))
+	return gulp.src(config.src.img)
+		.pipe(changed(config.dest.img))
 		.pipe(imagemin([
 			pngquant({
 				quality: '65-80', // 画質
@@ -171,7 +171,7 @@ gulp.task('img-min', () => {
 			imagemin.svgo(),
 			imagemin.optipng(),
 			imagemin.gifsicle()
-		])).pipe(gulp.dest(config.imgDest))
+		])).pipe(gulp.dest(config.dest.img))
 });
 
 
@@ -179,10 +179,10 @@ gulp.task('img-min', () => {
 // Watch
 // --------------------------------------------
 gulp.task('watch', (done) => {
-	gulp.watch([config.watch, `${config.cssDest}*.css`, `${config.jsDest}*.js`]).on('change', browserSync.reload);
-	gulp.watch(config.scss, gulp.series('stylelint', 'prettier:scss', 'sass'));
-	gulp.watch(`${config.js}/**/*.js`, gulp.series('eslint'));
-	gulp.watch(config.img, gulp.series('img-min'));
+	gulp.watch([config.watch, `${config.dest.scss}*.css`, `${config.dest.js}*.js`]).on('change', browserSync.reload);
+	gulp.watch(config.src.scss, gulp.series('stylelint', 'prettier:scss', 'sass'));
+	gulp.watch(`${config.src.js}/**/*.js`, gulp.series('eslint'));
+	gulp.watch(config.src.img, gulp.series('img-min'));
 	done();
 });
 

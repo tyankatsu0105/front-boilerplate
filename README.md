@@ -23,12 +23,13 @@ hogehogeはfugafugaが開発したfooobar。
     - [eslint](#eslint)
 - [Rule](#rule)
   - [Git](#git)
+    - [setting git config](#setting-git-config)
     - [commit message](#commit-message)
       - [prefix](#prefix)
       - [scope](#scope)
       - [emoji prefix](#emoji-prefix)
       - [seven rules](#seven-rules)
-  - [html,php](#html-php)
+  - [html,php](#htmlphp)
   - [php](#php)
   - [sass(scss)](#sassscss)
     - [core](#core)
@@ -174,6 +175,15 @@ eslintとprettierを`eslint-config-prettier`と`eslint-plugin-prettier`で実現
 
 ## Git
 <sub><sup>[back to contents](#contents)</sup></sub>
+
+### setting git config
+<sub><sup>[back to contents](#contents)</sup></sub>
+
+gitmessage.txtをcommit時に表示するために以下のコマンドを`gitmessage.txt`と同階層で実行する
+
+```
+git config --local commit.template ./gitmessage.txt
+```
 
 ### commit message
 <sub><sup>[back to contents](#contents)</sup></sub>
